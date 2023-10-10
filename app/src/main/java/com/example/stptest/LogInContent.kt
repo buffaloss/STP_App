@@ -127,7 +127,7 @@ fun LogInContent(navController: NavHostController?) {
 
 
         Button(
-            onClick = { /* Handle sign up */ },
+            onClick = { navController?.navigate("login") },
             colors = ButtonDefaults.buttonColors(Color(0xFFFF4967))
         ) {
             Text(

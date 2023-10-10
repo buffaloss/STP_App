@@ -15,6 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,6 +50,9 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
             modifier = Modifier
                 .padding(horizontal = 50.dp)
                 .align(Alignment.CenterHorizontally),
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.poppins_bold))
+            ),
             textAlign = TextAlign.Center,
             fontSize = 30.sp,
             lineHeight = 40.sp
@@ -54,8 +61,10 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
         Text(
             text = "$name is a free public transport subscription manager",
             modifier = Modifier
-                .padding(horizontal = 80.dp)
+                .padding(horizontal = 70.dp)
                 .align(Alignment.CenterHorizontally),
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.poppins_light))),
             textAlign = TextAlign.Center,
             fontSize = 15.sp,
             lineHeight = 20.sp
@@ -71,7 +80,13 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
             modifier = Modifier
                 .padding(top = 50.dp)
         ) {
-            Text(text = "Sign Up", color = Color.White, fontSize = 15.sp)
+            Text(
+                text = "Sign Up",
+                color = Color.White,
+                fontSize = 15.sp,
+                style = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.poppins_semibold)))
+            )
         }
 
         TextButton(
@@ -82,7 +97,12 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
             modifier = Modifier
                 .padding(start = 20.dp, end = 20.dp)
         ) {
-            Text(text = "Log in", color = Color(0xFFFF4967), fontSize = 15.sp)
+            Text(text = "Log in",
+                color = Color(0xFFFF4967),
+                fontSize = 15.sp,
+                style = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.poppins_semibold)))
+            )
         }
 
     }

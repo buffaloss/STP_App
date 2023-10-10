@@ -25,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -55,8 +57,12 @@ fun SignUpContent(navController: NavHostController?) {
         Text(
             text = "Welcome",
             modifier = Modifier
-                .padding(end= 150.dp),
-            style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold)
+                .padding(end= 130.dp),
+            style = TextStyle(
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily(Font(R.font.poppins_bold))
+            )
         )
 
         TextField(
@@ -65,7 +71,14 @@ fun SignUpContent(navController: NavHostController?) {
                 .padding(top= 50.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             onValueChange = { /* Handle text change */ },
-            label = { Text("Username") },
+            label = {
+                Text(
+                    text = "Username",
+                    style = TextStyle(
+                        fontSize = 15.sp,
+                        fontFamily = FontFamily(Font(R.font.poppins_regular))
+                    )
+                    ) },
             colors = TextFieldDefaults.textFieldColors( // Set the text and label color
                 textColor = Color.Black,
                 backgroundColor = Color.White, // Set the background color
@@ -78,10 +91,16 @@ fun SignUpContent(navController: NavHostController?) {
         TextField(
             value = "", // Replace with actual state
             modifier = Modifier
-                .padding(top= 15.dp)
+                .padding(top=15.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             onValueChange = { /* Handle text change */ },
-            label = { Text("Phone or Email") },
+            label = { Text(
+                text ="Phone or Email",
+                style = TextStyle(
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+            ) },
             colors = TextFieldDefaults.textFieldColors( // Set the text and label color
                 textColor = Color.Black,
                 backgroundColor = Color.White, // Set the background color
@@ -94,10 +113,16 @@ fun SignUpContent(navController: NavHostController?) {
         TextField(
             value = "", // Replace with actual state
             modifier = Modifier
-                .padding(top= 15.dp)
+                .padding(top= 15.dp,bottom = 50.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             onValueChange = { /* Handle text change */ },
-            label = { Text("Password") },
+            label = { Text(
+                text = "Password",
+                style = TextStyle(
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+                ) },
             colors = TextFieldDefaults.textFieldColors( // Set the text and label color
                 textColor = Color.Black,
                 backgroundColor = Color.White, // Set the background color
@@ -106,15 +131,19 @@ fun SignUpContent(navController: NavHostController?) {
             ),
             shape = RoundedCornerShape(30.dp) // Set the shape
         )
-
 
         Button(
-            onClick = { /* Handle sign up */ },
-            colors = ButtonDefaults.buttonColors(Color(0xFFFF4967)),
-            modifier = Modifier
-                .padding(top = 50.dp)
+            onClick = { navController?.navigate("signup")  },
+            colors = ButtonDefaults.buttonColors(Color(0xFFFF4967))
         ) {
-            Text(text = "Sign Up", color = Color.White, fontSize = 15.sp)
+            Text(
+                text ="Sign up",
+                style = TextStyle(
+                    fontSize = 15.sp,
+                    color = Color.White,
+                    fontFamily = FontFamily(Font(R.font.poppins_semibold))
+                )
+            )
         }
 
         Row(
@@ -122,11 +151,11 @@ fun SignUpContent(navController: NavHostController?) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically // Align the children vertically
         ) {
-            Text(text = "Already have an account?", fontSize = 15.sp)
+            Text(text = "Already have an account?", fontSize = 15.sp, fontFamily = FontFamily(Font(R.font.poppins_regular)))
             TextButton(onClick = {
-                navController?.navigate("login")}
-            ) {
-                Text(text = "Log in", color = Color(0xFFFF4967), fontSize = 15.sp)
+                navController?.navigate("login")
+            }) {
+                Text(text = "Log in", color = Color(0xFFFF4967), fontSize = 15.sp, fontFamily = FontFamily(Font(R.font.poppins_semibold)) )
             }
         }
     }
