@@ -73,7 +73,6 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
         // "Sign Up" Button
         Button(
             onClick = {
-                // Handle the Sign Up button click action
                 navController?.navigate("signup")
             },
             colors = ButtonDefaults.buttonColors(Color(0xFFFF4967)),
@@ -91,7 +90,6 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
 
         TextButton(
             onClick = {
-                // Handle the Text button click action
                 navController?.navigate("login")
             },
             modifier = Modifier

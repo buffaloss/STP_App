@@ -20,6 +20,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,15 +34,29 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.stptest.ui.theme.AppTheme
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
 fun SignUpContent(navController: NavHostController?) {
     val image = painterResource(R.drawable.signup_image)
+    var username by remember { mutableStateOf("") }
+    var emailOrPhone by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var passwordVisibility by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,11 +84,14 @@ fun SignUpContent(navController: NavHostController?) {
         )
 
         TextField(
-            value = "", // Replace with actual state
+            value = username,
+            onValueChange = { newUsername ->
+                // Update the state variable (username) with the new value
+                username = newUsername
+            },
             modifier = Modifier
                 .padding(top= 50.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
-            onValueChange = { /* Handle text change */ },
             label = {
                 Text(
                     text = "Username",
@@ -89,11 +110,14 @@ fun SignUpContent(navController: NavHostController?) {
         )
 
         TextField(
-            value = "", // Replace with actual state
+            value = emailOrPhone,
+            onValueChange = { newEmailOrPhone ->
+                // Update the state variable (username) with the new value
+                emailOrPhone = newEmailOrPhone
+            },
             modifier = Modifier
                 .padding(top=15.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
-            onValueChange = { /* Handle text change */ },
             label = { Text(
                 text ="Phone or Email",
                 style = TextStyle(
@@ -111,11 +135,14 @@ fun SignUpContent(navController: NavHostController?) {
         )
 
         TextField(
-            value = "", // Replace with actual state
+            value = password,
+            onValueChange = { newPassword ->
+                // Update the state variable (username) with the new value
+                password = newPassword
+            },
             modifier = Modifier
                 .padding(top= 15.dp,bottom = 50.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
-            onValueChange = { /* Handle text change */ },
             label = { Text(
                 text = "Password",
                 style = TextStyle(
@@ -129,7 +156,18 @@ fun SignUpContent(navController: NavHostController?) {
                 focusedIndicatorColor = Color.Transparent, // Hide the underline when focused
                 unfocusedIndicatorColor = Color.Transparent // Hide the underline when unfocused
             ),
-            shape = RoundedCornerShape(30.dp) // Set the shape
+            shape = RoundedCornerShape(30.dp), // Set the shape
+            visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val icon = if (passwordVisibility) Icons.Default.VisibilityOff else Icons.Default.Visibility
+                IconButton(
+                    onClick = { passwordVisibility = !passwordVisibility }
+                ) {
+                    val icon: ImageVector = if (passwordVisibility) Icons.Default.VisibilityOff else Icons.Default.Visibility
+                    Icon(icon, contentDescription = "Toggle Password Visibility")
+                }
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
         )
 
         Button(
