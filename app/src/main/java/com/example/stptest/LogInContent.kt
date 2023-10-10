@@ -23,12 +23,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.stptest.ui.theme.AppTheme
+import androidx.compose.ui.text.font.*
+
 
 @Composable
 fun LogInContent(navController: NavHostController?) {
@@ -51,8 +55,12 @@ fun LogInContent(navController: NavHostController?) {
         Text(
             text = "Welcome",
             modifier = Modifier
-                .padding(end= 150.dp),
-            style = TextStyle(fontSize = 40.sp, fontWeight = FontWeight.Bold)
+                .padding(end= 130.dp),
+            style = TextStyle(
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily(Font(R.font.poppins_bold))
+            )
         )
 
 
@@ -62,7 +70,13 @@ fun LogInContent(navController: NavHostController?) {
                 .padding(top=80.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             onValueChange = { /* Handle text change */ },
-            label = { Text("Phone or Email") },
+            label = { Text(
+                text ="Phone or Email",
+                style = TextStyle(
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+                ) },
             colors = TextFieldDefaults.textFieldColors( // Set the text and label color
                 textColor = Color.Black,
                 backgroundColor = Color.White, // Set the background color
@@ -75,10 +89,16 @@ fun LogInContent(navController: NavHostController?) {
         TextField(
             value = "", // Replace with actual state
             modifier = Modifier
-                .padding(top= 15.dp, bottom = 80.dp)
+                .padding(top= 15.dp, bottom = 0.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             onValueChange = { /* Handle text change */ },
-            label = { Text("Password") },
+            label = { Text(
+                text ="Password",
+                style = TextStyle(
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+            ) },
             colors = TextFieldDefaults.textFieldColors( // Set the text and label color
                 textColor = Color.Black,
                 backgroundColor = Color.White, // Set the background color
@@ -88,12 +108,36 @@ fun LogInContent(navController: NavHostController?) {
             shape = RoundedCornerShape(30.dp) // Set the shape
         )
 
+        Row(
+            modifier = Modifier
+                .padding(start= 120.dp, bottom = 50.dp),
+            horizontalArrangement = Arrangement.End,
+        ) {
+            TextButton(onClick = {
+                navController?.navigate("")
+            }) {
+                Text(
+                    text = "Forgot password",
+                    color = Color.Black,
+                    fontSize = 15.sp,
+                    fontFamily = FontFamily(Font(R.font.poppins_regular))
+                )
+            }
+        }
+
 
         Button(
             onClick = { /* Handle sign up */ },
             colors = ButtonDefaults.buttonColors(Color(0xFFFF4967))
         ) {
-            Text(text = "Log In", color = Color.White, fontSize = 15.sp)
+            Text(
+                    text ="Log in",
+                    style = TextStyle(
+                        fontSize = 15.sp,
+                        color = Color.White,
+                        fontFamily = FontFamily(Font(R.font.poppins_semibold))
+                    )
+            )
         }
 
         Row(
@@ -101,11 +145,11 @@ fun LogInContent(navController: NavHostController?) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically // Align the children vertically
         ) {
-            Text(text = "Don't have an account?", fontSize = 15.sp)
+            Text(text = "Don't have an account?", fontSize = 15.sp, fontFamily = FontFamily(Font(R.font.poppins_regular)))
             TextButton(onClick = {
                 navController?.navigate("signup")
             }) {
-                Text(text = "Sign up", color = Color(0xFFFF4967), fontSize = 15.sp)
+                Text(text = "Sign up", color = Color(0xFFFF4967), fontSize = 15.sp, fontFamily = FontFamily(Font(R.font.poppins_semibold)) )
             }
         }
     }
