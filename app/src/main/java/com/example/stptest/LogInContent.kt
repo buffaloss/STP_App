@@ -79,28 +79,6 @@ fun LogInContent(navController: NavHostController?) {
             )
         )
 
-
-//        TextField(
-//            value = emailOrPhone,
-//            modifier = Modifier
-//                .padding(top=80.dp)
-//                .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
-//            onValueChange = { /* Handle text change */ },
-//            label = { Text(
-//                text ="Phone or Email",
-//                style = TextStyle(
-//                    fontSize = 15.sp,
-//                    fontFamily = FontFamily(Font(R.font.poppins_regular))
-//                )
-//                ) },
-//            colors = TextFieldDefaults.textFieldColors( // Set the text and label color
-//                textColor = Color.Black,
-//                backgroundColor = Color.White, // Set the background color
-//                focusedIndicatorColor = Color.Transparent, // Hide the underline when focused
-//                unfocusedIndicatorColor = Color.Transparent // Hide the underline when unfocused
-//            ),
-//            shape = RoundedCornerShape(30.dp) // Set the shape
-//        )
         TextField(
             value = emailOrPhone,
             onValueChange = { newEmailOrPhone ->
@@ -126,27 +104,6 @@ fun LogInContent(navController: NavHostController?) {
             shape = RoundedCornerShape(30.dp) // Set the shape
         )
 
-//        TextField(
-//            value = "", // Replace with actual state
-//            modifier = Modifier
-//                .padding(top= 15.dp, bottom = 0.dp)
-//                .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
-//            onValueChange = { /* Handle text change */ },
-//            label = { Text(
-//                text ="Password",
-//                style = TextStyle(
-//                    fontSize = 15.sp,
-//                    fontFamily = FontFamily(Font(R.font.poppins_regular))
-//                )
-//            ) },
-//            colors = TextFieldDefaults.textFieldColors( // Set the text and label color
-//                textColor = Color.Black,
-//                backgroundColor = Color.White, // Set the background color
-//                focusedIndicatorColor = Color.Transparent, // Hide the underline when focused
-//                unfocusedIndicatorColor = Color.Transparent // Hide the underline when unfocused
-//            ),
-//            shape = RoundedCornerShape(30.dp) // Set the shape
-//        )
 
         TextField(
             value = password,

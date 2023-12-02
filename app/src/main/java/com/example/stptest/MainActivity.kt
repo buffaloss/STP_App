@@ -21,6 +21,7 @@ class MainActivity : ComponentActivity() {
                     composable("welcome") { WelcomeContent("AppName",navController = navController) }
                     composable("signup") { SignUpContent(navController) }
                     composable("login") { LogInContent(navController) }
+                    composable("subscriptions") { SubscriptionContent(navController)}
                 }
             }
         }
