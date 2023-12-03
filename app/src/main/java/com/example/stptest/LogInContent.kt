@@ -112,7 +112,7 @@ fun LogInContent(navController: NavHostController?) {
                 password = newPassword
             },
             modifier = Modifier
-                .padding(top= 15.dp,bottom = 50.dp)
+                .padding(top= 15.dp,bottom = 0.dp)
                 .border(1.5.dp, Color(0xFF49497D), shape = RoundedCornerShape(30.dp)),
             label = { Text(
                 text = "Password",
