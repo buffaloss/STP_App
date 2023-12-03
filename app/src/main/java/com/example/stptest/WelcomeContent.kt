@@ -103,6 +103,23 @@ fun WelcomeContent(name: String, modifier: Modifier = Modifier,navController: Na
             )
         }
 
+//        Button for quick access to Susbscriptions page for testing purposes:
+
+//        TextButton(
+//            onClick = {
+//                navController?.navigate("subscriptions")
+//            },
+//            modifier = Modifier
+//                .padding(start = 20.dp, end = 20.dp)
+//        ) {
+//            Text(text = "Test Subscriptions page",
+//                color = Color.Black,
+//                fontSize = 15.sp,
+//                style = TextStyle(
+//                    fontFamily = FontFamily(Font(R.font.poppins_semibold)))
+//            )
+//        }
+
     }
 }
 

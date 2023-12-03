@@ -2,6 +2,7 @@ package com.example.stptest
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,20 +35,21 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun SubscriptionContent(navController: NavHostController?) {
-    val profile_image = painterResource(R.drawable.profile_image)
     val person_image = painterResource(R.drawable.person_image)
     val square_image = painterResource(R.drawable.square_image)
+    val lock_image = painterResource(R.drawable.lock)
+    val selectedSubscription = remember { mutableStateOf("General Pass") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start=15.dp, end = 15.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
-//        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
                 Text(
@@ -65,14 +69,14 @@ fun SubscriptionContent(navController: NavHostController?) {
                         fontSize = 15.sp,
                         fontFamily = FontFamily(Font(R.font.poppins_regular))
                     )
-                )            }
-//            Image(
-//                painter = profile_image,
-//                contentDescription = "Profile Image",
-//                modifier = Modifier
-//                    .size(80.dp)
-//                    .padding(top= 50.dp)
-//                )
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .padding(top = 40.dp)
+                    .size(60.dp)
+                    .background(Color(0xFFEDEDEE), CircleShape)
+            )
         }
 
         Card(
@@ -144,12 +148,13 @@ fun SubscriptionContent(navController: NavHostController?) {
             )
         )
 
-        // Repeat this Card for each subscription
+        // General Pass card selection
         Card(
             modifier = Modifier
                 .padding(top = 15.dp)
-                .fillMaxWidth(),
-            backgroundColor = Color(0xFFFF4967),
+                .fillMaxWidth()
+                .clickable { selectedSubscription.value = "General Pass" },
+            backgroundColor = if (selectedSubscription.value == "General Pass") Color(0xFFFF4967) else Color(0xFFA9A9A9),
             shape = RoundedCornerShape(25.dp)
         ) {
             Row(
@@ -175,7 +180,7 @@ fun SubscriptionContent(navController: NavHostController?) {
                         modifier = Modifier
                             .padding(top= 8.dp, start = 20.dp),
                         style = TextStyle(
-                            color = Color.White,
+                            color = if (selectedSubscription.value == "General Pass") Color.White else Color.Black,
                             fontSize = 18.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_bold))
                         )
@@ -185,7 +190,7 @@ fun SubscriptionContent(navController: NavHostController?) {
                         modifier = Modifier
                             .padding(start= 20.dp),
                         style = TextStyle(
-                            color = Color.White,
+                            color = if (selectedSubscription.value == "General Pass") Color.White else Color.Black,
                             fontSize = 12.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_regular))
                         )
@@ -200,11 +205,13 @@ fun SubscriptionContent(navController: NavHostController?) {
             }
         }
 
+        // Student Pass card selection
         Card(
             modifier = Modifier
                 .padding(top = 5.dp)
-                .fillMaxWidth(),
-            backgroundColor = Color(0xFFA9A9A9),
+                .fillMaxWidth()
+                .clickable { selectedSubscription.value = "Student Pass" },
+            backgroundColor = if (selectedSubscription.value == "Student Pass") Color(0xFFFF4967) else Color(0xFFA9A9A9),
             shape = RoundedCornerShape(25.dp)
         ) {
             Row(
@@ -226,21 +233,21 @@ fun SubscriptionContent(navController: NavHostController?) {
 
                 Column {
                     Text(
-                        text = "General Pass",
+                        text = "Student Pass",
                         modifier = Modifier
                             .padding(top= 8.dp, start = 20.dp),
                         style = TextStyle(
-                            color = Color.Black,
+                            color = if (selectedSubscription.value == "Student Pass") Color.White else Color.Black,
                             fontSize = 18.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_bold))
                         )
                     )
                     Text(
-                        text = "Starting from 234 MDL",
+                        text = "Starting from 164 MDL",
                         modifier = Modifier
                             .padding(start= 20.dp),
                         style = TextStyle(
-                            color = Color.Black,
+                            color = if (selectedSubscription.value == "Student Pass") Color.White else Color.Black,
                             fontSize = 12.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_regular))
                         )
@@ -250,16 +257,25 @@ fun SubscriptionContent(navController: NavHostController?) {
                     modifier = Modifier
                         .padding(start = 70.dp, top = 8.dp)
                         .size(50.dp)
-                        .background(Color(0xFFEDEDEE), CircleShape)
-                )
+                        .background(Color(0xFFEDEDEE), CircleShape),
+                    contentAlignment = Alignment.Center
+                ){
+                    Image(
+                        painter = lock_image,
+                        contentDescription = "Lock Image",
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
             }
         }
 
+        // Pupil Pass card selection
         Card(
             modifier = Modifier
                 .padding(top = 5.dp)
-                .fillMaxWidth(),
-            backgroundColor = Color(0xFFA9A9A9),
+                .fillMaxWidth()
+                .clickable { selectedSubscription.value = "Pupil Pass" },
+            backgroundColor = if (selectedSubscription.value == "Pupil Pass") Color(0xFFFF4967) else Color(0xFFA9A9A9),
             shape = RoundedCornerShape(25.dp)
         ) {
             Row(
@@ -281,21 +297,21 @@ fun SubscriptionContent(navController: NavHostController?) {
 
                 Column {
                     Text(
-                        text = "General Pass",
+                        text = "Pupil Pass",
                         modifier = Modifier
                             .padding(top= 8.dp, start = 20.dp),
                         style = TextStyle(
-                            color = Color.Black,
+                            color = if (selectedSubscription.value == "Pupil Pass") Color.White else Color.Black,
                             fontSize = 18.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_bold))
                         )
                     )
                     Text(
-                        text = "Starting from 234 MDL",
+                        text = "Starting from 117 MDL",
                         modifier = Modifier
                             .padding(start= 20.dp),
                         style = TextStyle(
-                            color = Color.Black,
+                            color = if (selectedSubscription.value == "Pupil Pass") Color.White else Color.Black,
                             fontSize = 12.sp,
                             fontFamily = FontFamily(Font(R.font.poppins_regular))
                         )
@@ -305,8 +321,15 @@ fun SubscriptionContent(navController: NavHostController?) {
                     modifier = Modifier
                         .padding(start = 70.dp, top = 8.dp)
                         .size(50.dp)
-                        .background(Color(0xFFEDEDEE), CircleShape)
-                )
+                        .background(Color(0xFFEDEDEE), CircleShape),
+                    contentAlignment = Alignment.Center
+                ){
+                    Image(
+                        painter = lock_image,
+                        contentDescription = "Lock Image",
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
             }
         }
 
